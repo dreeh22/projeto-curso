@@ -1,0 +1,33 @@
+<form #form="ngForm" (ngSubmit)="onSubmit(curso)" style="padding-top: 10px" class="needs-validation" novalidate>
+
+    <input type="hidden" name="id" [(ngModel)]="curso.id">
+
+    <div class="form-row">
+        
+
+        <div class="col-sm-12">
+            <label for="nome" class="control-label">Nome do Curso</label>
+
+            <input type="text" class="form-control" id="nome" name="nome" #nomeModel="ngModel" [(ngModel)]="curso.nome"
+                placeholder="Nome do Curso" required minlength="3" maxlength="255" />
+        </div>
+
+
+        <div *ngIf="nomeModel.invalid && nomeModel.touched" style="margin-top: 1%; margin-left:0.5%;" class="alert alert-danger">
+                Campo obrigatório
+        </div>
+
+        <div *ngIf="nomeModel.invalid && nomeModel.errors.minlength" style="margin-top: 1%; margin-left:0.5%;" class="alert alert-danger">
+            Tamanho menor que 3 caracterer não é permitido
+        </div>
+
+
+    </div>
+    <div style="margin-top: 10px">
+        <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Salvar</button>
+        <button type="button" class="btn btn-default">Cancelar</button>
+    </div>
+
+
+
+</form>
